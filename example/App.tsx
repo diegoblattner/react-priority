@@ -23,27 +23,24 @@ const Icons = () => {
   );
 }
 
+const Loading = () => (
+  <div className="loader" style={{ marginTop: "3rem" }} />
+);
+
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <PriorityProvider>
-      <Priority level={0}>
-        <Icons />
-      </Priority>
-      <Priority level={1} fallback={"Loading...."}>
-        <h1>Vite + React</h1>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test HMR
-          </p>
-        </div>
-        <p className="read-the-docs">
-          Click on the Vite and React logos to learn more
-        </p>
+        <Priority level={0}>
+          <Icons />
+        </Priority>
+      <Priority level={1} fallback={<Loading />}>
+        <h1>Demo</h1>
+        
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
       </Priority>
     </PriorityProvider>
   )
