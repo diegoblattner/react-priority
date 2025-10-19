@@ -7,12 +7,15 @@ export class PriorityManager {
   private readonly freeItemCbs: Record<string, () => void> = {};
   
   constructor(lastPriorityLevel: number = 3) {
+    if (lastPriorityLevel < 1) {
+      throw new Error(`lastPriorityLevel needs to be >= 1. Got ${lastPriorityLevel}.`);
+    }
     this.lastPriorityLevel = lastPriorityLevel;
   }
 
   registerItem(level: number, identifier: string): () => void {
-    if (level > this.lastPriorityLevel) {
-      throw new Error(`Attempted to register priority ${level}, but last possible priority is ${this.lastPriorityLevel}`);
+    if (level < 0 || level > this.lastPriorityLevel) {
+      throw new Error(`Priority level needs to be >= 0 and <= ${this.lastPriorityLevel}. Got ${level}.`);
     }
     const subs = this.items.get(level) ?? [];
     const index = subs.indexOf(identifier);
