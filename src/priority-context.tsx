@@ -19,11 +19,15 @@ type PriorityStore = {
 export const PriorityContext = createContext<PriorityStore | undefined>(undefined);
 
 type PriorityProviderProps = Readonly<{
+  /**
+   * defaults to 3
+   */
+  lastPriority?: number;
   children: ReactNode;
 }>;
 
-export function PriorityProvider({ children }: PriorityProviderProps) {
-  const priorityManager = useMemo(() => new PriorityManager(3), []);
+export function PriorityProvider({ children, lastPriority }: PriorityProviderProps) {
+  const priorityManager = useMemo(() => new PriorityManager(lastPriority), []);
   const [currentLevel, setCurrentLevel] = useState<number>(0);
   const ctxValue = useMemo(() => ({
     currentLevel,
