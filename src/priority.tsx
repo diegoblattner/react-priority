@@ -1,5 +1,5 @@
 import { memo, type ReactNode } from "react";
-import { FreePriorityContext, usePriority } from "./priority-context";
+import { PriorityProvider, FreePriorityContext, usePriority } from "./priority-context";
 
 type PriorityProps = Readonly<{
   level: number;
@@ -18,6 +18,8 @@ export function Priority({ level, children, fallback }: PriorityProps) {
     </MemoizedToggle>
   );
 }
+
+Priority.Provider = PriorityProvider; // compounds the component
 
 type MemoizedToggleProps = {
   show: boolean;

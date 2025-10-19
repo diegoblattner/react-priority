@@ -5,14 +5,14 @@ Manually define the component rendering priority of your client side application
 ```jsx
 import { Priority, PriorityProvider, useFreePriority } from './src';
 
-<PriorityProvider>
+<Priority.Provider>
   <Priority level={0}> // will render immediately
     <ProductDetails />
   </Priority>
   <Priority level={1} fallback={<Loading />}> // will render after priority level 0 is freed
     <Recommendations />
   </Priority>
-</PriorityProvider>
+</Priority.Provider>
 
 ```
 

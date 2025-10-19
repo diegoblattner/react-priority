@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import { Priority, PriorityProvider, useFreePriority } from '../src';
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import { Priority, useFreePriority } from "../src";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
 const Icons = () => {
   const freePriority = useFreePriority();
@@ -31,19 +31,24 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <PriorityProvider>
+    <Priority.Provider>
+      <div className="card">
+        <p>Priority 0</p>
         <Priority level={0}>
           <Icons />
         </Priority>
-      <Priority level={1} fallback={<Loading />}>
-        <h1>Demo</h1>
-        
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </Priority>
-    </PriorityProvider>
-  )
+      </div>
+      <div className="card">
+        <p>Priority 1</p>
+        <Priority level={1} fallback={<Loading />}>
+          <h1>Demo</h1>
+          <button onClick={() => setCount((count) => count + 1)}>
+            count is {count}
+          </button>
+        </Priority>
+      </div>
+    </Priority.Provider>
+  );
 }
 
 export default App

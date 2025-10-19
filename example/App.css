@@ -34,6 +34,16 @@
   }
 }
 
+.card {
+  padding: 16px;
+  border: 1px solid #999;
+  border-radius: 4px;
+}
+
+.card + .card {
+  margin-top: 24px;
+}
+
 .loader {
   width: 48px;
   height: 48px;
